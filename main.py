@@ -1,13 +1,14 @@
 import csv
 import random
 import numpy as np
-from algumnome import *
+from calcular_distancias import *
 
 #Define o número de grupos.
 k_centroides_aleatorios = int(input("Digite o número de grupos: "))
 gerar_centroide = k_centroides_aleatorios
 grupos = []
 mudanca = []
+k= 1
 
 #Escolhe os centroides aleatoriamente.
 while gerar_centroide != 0:
@@ -26,10 +27,15 @@ for value in range(k_centroides_aleatorios):
      grupos.append([])
 
 #Onde a magia acontece
-while True:
-    novos_grupos = kmeans(grupos)
+while k!=0:
+    novos_grupos = calcular_distancias(grupos)
     cont = len(novos_grupos)
-    for value in range(cont-1):
-        mudanca.append(len(novos_grupos[cont-1]))
+    element = 0
+    for value in range(cont):
+        mudanca.append(len(novos_grupos[element]))
         cont -=1
+        element +=1
+    mudanca.reverse()
+    k -=1
+
     

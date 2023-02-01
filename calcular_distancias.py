@@ -2,7 +2,7 @@ import csv
 import random
 import numpy as np
 
-def kmeans(grupos):
+def calcular_distancias(grupos):
 
     #Abre o arquivo "kmeans.csv" para calcular as distâncias.
     with open('kmeans.csv', 'r') as kmeans_csv:
@@ -30,6 +30,7 @@ def kmeans(grupos):
             for element in centro:
                 centro[cont] = float(element)
                 cont +=1 
+            
             distance = np.linalg.norm(np.array(ponto) - np.array(centro))
             
             #Abre o arquivo distancias para salvar as distancias entre a amostra e cada centro.
