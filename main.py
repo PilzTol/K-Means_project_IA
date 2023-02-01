@@ -24,6 +24,7 @@ for value in range(k_centroides_aleatorios):
      grupos.append([])
 lol=1
 while lol !=0:
+
     #Abre o arquivo "kmeans.csv" para calcular as distâncias.
     with open('kmeans.csv', 'r') as kmeans_csv:
         pontos = list(csv.reader(kmeans_csv))    
@@ -51,6 +52,7 @@ while lol !=0:
                 centro[cont] = float(element)
                 cont +=1 
             distance = np.linalg.norm(np.array(ponto) - np.array(centro))
+            
             #Abre o arquivo distancias para salvar as distancias entre a amostra e cada centro.
             with open('distancias.csv', 'a', newline='') as distancias_csv:
                 escrever_distancia = csv.writer(distancias_csv)
@@ -67,7 +69,14 @@ while lol !=0:
         cont = 0
         for element in distance: 
             if element == distancia_min:
-                grupos[cont].append(element)    
+                grupos[cont].append(ponto)    
                 break
             cont +=1
     lol -=1
+    
+    print(len(grupos[0]))
+    print(len(grupos[1]))
+    print(len(grupos[2]))
+    print(len(grupos[3]))
+
+
