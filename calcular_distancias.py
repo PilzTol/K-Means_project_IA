@@ -30,8 +30,10 @@ def calcular_distancias(grupos):
             for element in centro:
                 centro[cont] = float(element)
                 cont +=1 
-            
-            distance = np.linalg.norm(np.array(ponto) - np.array(centro))
+            centro.remove(centro[2])
+            copia_ponto = ponto[:]
+            copia_ponto.remove(copia_ponto[2])
+            distance = np.linalg.norm(np.array(copia_ponto) - np.array(centro))
             
             #Abre o arquivo distancias para salvar as distancias entre a amostra e cada centro.
             with open('distancias.csv', 'a', newline='') as distancias_csv:

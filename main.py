@@ -27,15 +27,30 @@ for value in range(k_centroides_aleatorios):
      grupos.append([])
 
 #Onde a magia acontece
-while k!=0:
+
+ultimo_loop = True
+while ultimo_loop:
     novos_grupos = calcular_distancias(grupos)
-    cont = len(novos_grupos)
+    cont_1 = len(novos_grupos)
+    cont_2 = cont_1
+    print(len(novos_grupos[0]))
+    print(len(novos_grupos[1]))
     element = 0
-    for value in range(cont):
+
+    for value in cont_2:
+        if novos_grupos[cont_2] == mudanca[cont_2]:
+            ultimo_loop = False
+        else:
+            ultimo_loop = True
+        cont_2 -=1
+
+    if ultimo_loop == False:
+        
+    for value in range(cont_1):
         mudanca.append(len(novos_grupos[element]))
-        cont -=1
+        cont_1 -=1
         element +=1
-    mudanca.reverse()
     k -=1
+    cont_1 = 0 
 
     
