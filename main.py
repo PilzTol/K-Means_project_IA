@@ -52,12 +52,12 @@ while ultimo_loop:
         cont_3 -=1
     #Calcula a média dos grupos e definir os novos pontos centrais
         ##
-    #Atribuir os nghgfhovos centros a var grupos para próxima iteração
+    #Atribuir os novos centros a var grupos para próxima iteração
         grupos = novos_centros[:]
         while verificacao:
             calcular_distancias(grupos)
             cont_1 = len(grupos)
-            cont_2 = condsasadt_1
+            cont_2 = cont_1
             cont_3 = cont_2
             element = 0
 
