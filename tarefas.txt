@@ -1,8 +1,15 @@
 Calculando os novos centros
 	1. Itera e soma todos do valores do atributo de cada grupo
 		exemplo: grupos[0]
+
 	for grupo in grupos:
 		total = 0
-		for element in grupos[0]:
-			total +=element[0]
-			
+		cont_5= len(grupo)
+		for element in grupo[cont_5-1]:
+			cont_4 = len(element)
+			#Aqui vc pode somar cada valor de cada atributo separadamente
+		cont_5 -=1
+	
+
+
+

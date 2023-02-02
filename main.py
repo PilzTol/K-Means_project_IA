@@ -79,7 +79,7 @@ while ultimo_loop:
                 cont_3 -=1
             
             #Calcula a média dos grupos e definir os novos pontos centrais
-            
+                                    
 
     #Atribuir os novos centros a var grupos para próxima iteração
         grupos = novos_centros[:]
