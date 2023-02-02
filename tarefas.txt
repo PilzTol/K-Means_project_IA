@@ -1,17 +1,8 @@
-1. Eu tenho os resultados distancias dos pontos centrais
-inicialmente definidos.
-#O que eu preciso fazer agora?
-	2.Verificar alterações nos grupos ()
-		#Como eu faço isso?
-		#Salvando o número de elementos em cada
-		grupo.
-		#Compare se houve alteração na quantidade
-		de elementos.
-		#Se não houve alterações.
-		2.1. Calcular a média de cada grupo
-			2.1.1. Redefinir os pontos centrais
-		2.2. Enviar os pontos centrais para próxima iteração
-3. Na primeira vez que não houver mais pontos centrais, alterar 
-valor da varaivel ultimo loop e rodar mais uma vez. 
-4. Se não houver alterações ultimo loop permanece 0 e o programa 
-se encerra.  
+Calculando os novos centros
+	1. Itera e soma todos do valores do atributo de cada grupo
+		exemplo: grupos[0]
+	for grupo in grupos:
+		total = 0
+		for element in grupos[0]:
+			total +=element[0]
+			
