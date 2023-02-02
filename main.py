@@ -30,7 +30,7 @@ for value in range(k_centroides_aleatorios):
 verificacao = False
 ultimo_loop = True
 while ultimo_loop:
-    calcular_distancias(grupos)
+    grupos = calcular_distancias(grupos)[:]
     cont_1 = len(grupos)
     cont_2 = cont_1
     cont_3 = cont_2
@@ -51,11 +51,11 @@ while ultimo_loop:
         cont_2 -=1
         cont_3 -=1
     #Calcula a média dos grupos e definir os novos pontos centrais
-        ##
+        
     #Atribuir os novos centros a var grupos para próxima iteração
         grupos = novos_centros[:]
         while verificacao:
-            calcular_distancias(grupos)
+            grupos = calcular_distancias(grupos)[:]
             cont_1 = len(grupos)
             cont_2 = cont_1
             cont_3 = cont_2
@@ -73,10 +73,13 @@ while ultimo_loop:
                 else:
                     ultimo_loop = False
                     verificacao = False
+                    #Salva os grupos em um arquivo
+
                 cont_2 -=1
                 cont_3 -=1
             
             #Calcula a média dos grupos e definir os novos pontos centrais
-                    ##
+            
+
     #Atribuir os novos centros a var grupos para próxima iteração
         grupos = novos_centros[:]
