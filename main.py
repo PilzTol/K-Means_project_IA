@@ -8,7 +8,6 @@ k_centroides_aleatorios = int(input("Digite o número de grupos: "))
 gerar_centroide = k_centroides_aleatorios
 grupos = []
 mudanca = []
-novos_centros = []
 
 #Escolhe os centroides aleatoriamente.
 while gerar_centroide != 0:
@@ -30,7 +29,10 @@ for value in range(k_centroides_aleatorios):
 verificacao = False
 ultimo_loop = True
 while ultimo_loop:
-    grupos = calcular_distancias(grupos)[:]
+    novos_centros = []
+    grupos = calcular_distancias()[:]
+    for value in range(grupos):
+     novos_centros.append([])
     cont_1 = len(grupos)
     cont_2 = cont_1
     cont_3 = cont_2
@@ -46,16 +48,44 @@ while ultimo_loop:
         if grupos[cont_2-1] == mudanca[cont_2-1]:
             ultimo_loop = True
         else:
-            ultimo_loop = False
+            #Caso dê algum erro que eu não sei o porquê adicionar o trecho: ultimo_loop = False.
             verificacao = True
         cont_2 -=1
         cont_3 -=1
+
     #Calcula a média dos grupos e definir os novos pontos centrais
-        
+    cont_4 = len(grupos[0][0])-1
+    for grupo in grupos:
+        for value in range(cont_4):
+            total = 0
+            sublista = []	
+            for element in grupo:
+                total += element[cont_4-1]
+            total = total/len(grupo)
+            sublista.append(total)
+            with open('temporario.csv', 'a', newline='') as temporario_csv:
+                escrever_sublista = csv.writer(temporario_csv)
+                escrever_sublista.writerow(sublista)
+            cont_4 -= 1
+        with open('temporario.csv', 'r') as centros_csv:
+            centros = list(csv.reader(centros_csv))
+        novos_centros.append(centros) 
+        with open("temporario.csv", "w") as limpar_arquivo:
+            limpar_arquivo.truncate()
+
     #Atribuir os novos centros a var grupos para próxima iteração
-        grupos = novos_centros[:]
+    with open('centros.csv', 'w', newline='') as novos_centros_csv:
+        writer = csv.writer(novos_centros_csv)
+        writer.writerows(novos_centros)
+    if True:
+        so_para = "fechar o arquivo"
+
         while verificacao:
-            grupos = calcular_distancias(grupos)[:]
+            novos_centros = []
+            grupos = calcular_distancias()[:]
+            for value in range(grupos):
+                novos_centros.append([])
+            grupos = calcular_distancias()[:]
             cont_1 = len(grupos)
             cont_2 = cont_1
             cont_3 = cont_2
@@ -77,9 +107,28 @@ while ultimo_loop:
 
                 cont_2 -=1
                 cont_3 -=1
-            
-            #Calcula a média dos grupos e definir os novos pontos centrais
-                                    
 
-    #Atribuir os novos centros a var grupos para próxima iteração
-        grupos = novos_centros[:]
+            #Calcula a média dos grupos e definir os novos pontos centrais
+            cont_4 = len(grupos[0][0])-1
+            for grupo in grupos:
+                for value in range(cont_4):
+                    total = 0
+                    sublista = []	
+                    for element in grupo:
+                        total += element[cont_4-1]
+                    total = total/len(grupo)
+                    sublista.append(total)
+                    with open('temporario.csv', 'a', newline='') as temporario_csv:
+                        escrever_sublista = csv.writer(temporario_csv)
+                        escrever_sublista.writerow(sublista)
+                    cont_4 -= 1
+                with open('temporario.csv', 'r') as centros_csv:
+                    centros = list(csv.reader(centros_csv))
+                novos_centros.append(centros) 
+                with open("temporario.csv", "w") as limpar_arquivo:
+                    limpar_arquivo.truncate()
+
+            #Atualizar os centros para próxima iteração
+            with open('centros.csv', 'w', newline='') as novos_centros_csv:
+                writer = csv.writer(novos_centros_csv)
+                writer.writerows(novos_centros)

@@ -2,8 +2,8 @@ import csv
 import random
 import numpy as np
 
-def calcular_distancias(grupos):
-
+def calcular_distancias():
+    grupos = []
     #Abre o arquivo "kmeans.csv" para calcular as distâncias.
     with open('kmeans.csv', 'r') as kmeans_csv:
         pontos = list(csv.reader(kmeans_csv))    
