@@ -31,8 +31,6 @@ ultimo_loop = True
 while ultimo_loop:
     novos_centros = []
     grupos = calcular_distancias()[:]
-    for value in range(grupos):
-     novos_centros.append([])
     cont_1 = len(grupos)
     cont_2 = cont_1
     cont_3 = cont_2
@@ -44,11 +42,10 @@ while ultimo_loop:
         element +=1
     cont_3 = cont_1
 
-    for value in cont_3:
+    for value in range(cont_3):
         if grupos[cont_2-1] == mudanca[cont_2-1]:
             ultimo_loop = True
         else:
-            #Caso dê algum erro que eu não sei o porquê adicionar o trecho: ultimo_loop = False.
             verificacao = True
         cont_2 -=1
         cont_3 -=1
@@ -60,7 +57,7 @@ while ultimo_loop:
             total = 0
             sublista = []	
             for element in grupo:
-                total += element[cont_4-1]
+                total += int(element[cont_4-1])
             total = total/len(grupo)
             sublista.append(total)
             with open('temporario.csv', 'a', newline='') as temporario_csv:
@@ -82,9 +79,6 @@ while ultimo_loop:
 
         while verificacao:
             novos_centros = []
-            grupos = calcular_distancias()[:]
-            for value in range(grupos):
-                novos_centros.append([])
             grupos = calcular_distancias()[:]
             cont_1 = len(grupos)
             cont_2 = cont_1
@@ -122,6 +116,8 @@ while ultimo_loop:
                         escrever_sublista = csv.writer(temporario_csv)
                         escrever_sublista.writerow(sublista)
                     cont_4 -= 1
+                #Novos tá recebendo as listas errado
+                #Verificar o valor de grupos
                 with open('temporario.csv', 'r') as centros_csv:
                     centros = list(csv.reader(centros_csv))
                 novos_centros.append(centros) 
