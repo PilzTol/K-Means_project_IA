@@ -32,10 +32,12 @@ while ultimo_loop:
     novos_centros = []
     grupos = calcular_distancias()[:]
     cont_1 = len(grupos)
-    cont_2 = cont_1
-    cont_3 = cont_2
+    cont_2 = 0
+    cont_3 = cont_1
     element = 0
 
+
+    #Só falta mudar a parte da mudança, saber se houve mudança ou não nos grupos
     for value in range(cont_3):
         mudanca.append(len(grupos[element]))
         cont_3 -=1
@@ -43,11 +45,11 @@ while ultimo_loop:
     cont_3 = cont_1
 
     for value in range(cont_3):
-        if grupos[cont_2-1] == mudanca[cont_2-1]:
+        if grupos[cont_2] == mudanca[cont_2]:
             ultimo_loop = True
         else:
             verificacao = True
-        cont_2 -=1
+        cont_2 +=1
         cont_3 -=1
 
     #Calcula a média dos grupos e definir os novos pontos centrais
