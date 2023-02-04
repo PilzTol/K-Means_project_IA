@@ -37,7 +37,8 @@ def calcular_distancias():
             for element in centro:
                 centro[cont] = float(element)
                 cont +=1 
-            centro.remove(centro[2])
+            if len(centro) > 2:
+                centro.remove(centro[2])
             copia_ponto = ponto[:]
             copia_ponto.remove(copia_ponto[2])
             distance = np.linalg.norm(np.array(copia_ponto) - np.array(centro))

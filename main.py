@@ -66,16 +66,18 @@ while ultimo_loop:
             escrever_sublista = csv.writer(temporario_csv)
             escrever_sublista.writerow(sublista)
         sublista = []
-        with open('temporario.csv', 'r') as centros_csv:
-            centros = list(csv.reader(centros_csv))
-        novos_centros.append(centros) 
-        with open("temporario.csv", "w") as limpar_arquivo:
-            limpar_arquivo.truncate() #Tudo ok até aqui analisar como o arquivo incial se comparta para alterar a entrada dos das listas
 
+    with open('temporario.csv', 'r') as temporario_leitura_csv:
+         novos_centros = list(csv.reader(temporario_leitura_csv))
     #Atribuir os novos centros a var grupos para próxima iteração
     with open('centros.csv', 'w', newline='') as novos_centros_csv:
-        writer = csv.writer(novos_centros_csv)
-        writer.writerows(novos_centros)
+        for element in novos_centros:
+            writer = csv.writer(novos_centros_csv)
+            writer.writerow(element)  
+    
+    with open("temporario.csv", "w") as limpar_arquivo:
+        limpar_arquivo.truncate() 
+
     if True:
         so_para = "fechar o arquivo"
 
@@ -94,7 +96,7 @@ while ultimo_loop:
                 element +=1
             cont_3 = cont_1
 
-            for value in cont_3:
+            for value in range(cont_3):
                 if grupos[cont_2-1] == mudanca[cont_2-1]:
                     ultimo_loop = True
                 else:
@@ -108,26 +110,27 @@ while ultimo_loop:
             #Calcula a média dos grupos e definir os novos pontos centrais
             cont_4 = len(grupos[0][0])-1
             for grupo in grupos:
+                cont_5 = 0
+                sublista = []
                 for value in range(cont_4):
                     total = 0
-                    sublista = []	
                     for element in grupo:
-                        total += element[cont_4-1]
+                        total += float(element[cont_5])
                     total = total/len(grupo)
                     sublista.append(total)
-                    with open('temporario.csv', 'a', newline='') as temporario_csv:
-                        escrever_sublista = csv.writer(temporario_csv)
-                        escrever_sublista.writerow(sublista)
-                    cont_4 -= 1
-                #Novos tá recebendo as listas errado
-                #Verificar o valor de grupos
-                with open('temporario.csv', 'r') as centros_csv:
-                    centros = list(csv.reader(centros_csv))
-                novos_centros.append(centros) 
-                with open("temporario.csv", "w") as limpar_arquivo:
-                    limpar_arquivo.truncate()
+                    cont_5 += 1	
+                with open('temporario.csv', 'a', newline='') as temporario_csv:
+                    escrever_sublista = csv.writer(temporario_csv)
+                    escrever_sublista.writerow(sublista)
+                sublista = []
 
-            #Atualizar os centros para próxima iteração
+            with open('temporario.csv', 'r') as temporario_leitura_csv:
+                novos_centros = list(csv.reader(temporario_leitura_csv))
+            #Atribuir os novos centros a var grupos para próxima iteração
             with open('centros.csv', 'w', newline='') as novos_centros_csv:
-                writer = csv.writer(novos_centros_csv)
-                writer.writerows(novos_centros)
+                for element in novos_centros:
+                    writer = csv.writer(novos_centros_csv)
+                    writer.writerow(element)  
+    
+            with open("temporario.csv", "w") as limpar_arquivo:
+                limpar_arquivo.truncate() 
