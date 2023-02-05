@@ -44,11 +44,14 @@ while ultimo_loop:
         print(f"Grupo {cont_7}:{len(var)}")
 
     if ftime == True:
+        tudo_igual = 0
         for value in range(cont_3):
             if len(grupos[cont_2]) != mudanca[cont_2]:
                 ultimo_loop = True
-            else:
-                ultimo_loop = False
+                tudo_igual = 1 
+        if tudo_igual == 0:
+            ultimo_loop = False
+
             cont_2 +=1
             cont_3 -=1
     cont_3 = cont_1

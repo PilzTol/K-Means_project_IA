@@ -2,7 +2,6 @@ import csv
 import random
 import numpy as np
 
-
 def calcular_distancias():
     grupos = []
     with open('centros.csv', 'r') as a_centros_csv:
