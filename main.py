@@ -3,7 +3,6 @@ import random
 import numpy as np
 from calcular_distancias import *
 import matplotlib.pyplot as plt
-import ast
 
 #Define o número de grupos.
 k_centroides_aleatorios = int(input("Digite o número de grupos: "))
