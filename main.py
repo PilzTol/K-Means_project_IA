@@ -2,6 +2,7 @@ import csv
 import random
 import numpy as np
 from calcular_distancias import *
+import matplotlib.pyplot as plt
 
 #Define o número de grupos.
 k_centroides_aleatorios = int(input("Digite o número de grupos: "))
@@ -77,6 +78,20 @@ while ultimo_loop:
 
     with open('temporario.csv', 'r') as temporario_leitura_csv:
          novos_centros = list(csv.reader(temporario_leitura_csv))
+
+    #Plotagem
+    with open('centros.csv', 'r') as cores_centros_csv:
+         cores_centros = list(csv.reader(cores_centros_csv))
+
+    cores = ['b', 'g', 'r', 'c', 'm', 'y', 'k']
+    for i in range(len(grupos)):
+        x = [p[0] for p in grupos[i]]
+        y = [p[1] for p in grupos[i]]
+        plt.scatter(x, y, color=cores[i % len(cores)])
+        plt.scatter(cores_centros[i][0], cores_centros[i][1], marker='x', color='black')
+    plt.savefig(f'kmeans_step_{step}.png')
+    plt.clf()
+    step += 1
 
     #Atribuir os novos centros a var grupos para próxima iteração
     with open('centros.csv', 'w', newline='') as novos_centros_csv:
