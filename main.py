@@ -28,6 +28,7 @@ for value in range(k_centroides_aleatorios):
 #Onde a magia acontece
 ultimo_loop = True
 ftime = False
+step = 0
 while ultimo_loop:
     novos_centros = []
     grupos = calcular_distancias()[:]
