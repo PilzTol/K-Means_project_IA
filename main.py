@@ -4,13 +4,15 @@ import numpy as np
 from calcular_distancias import *
 import matplotlib.pyplot as plt
 
-#Define o número de grupos.
-k_centroides_aleatorios = int(input("Digite o número de grupos: "))
-gerar_centroide = k_centroides_aleatorios
+
 grupos = []
 mudanca = [0, 0]
 
-#Escolhe os centroides aleatoriamente.
+#Define o número de grupos.
+k_centroides_aleatorios = int(input("Digite o número de grupos: "))
+gerar_centroide = k_centroides_aleatorios
+
+#Abre o arquivo kmeans.csv e escolhe uma das amostras como centroide aleatoriamente.
 while gerar_centroide != 0:
     with open('kmeans.csv', 'r') as kmeans_csv:
         pontos = list(csv.reader(kmeans_csv))
@@ -18,26 +20,32 @@ while gerar_centroide != 0:
         pontos.remove(k_ponto_escolhido)
     gerar_centroide -=1
 
-#Adiciona os centros escolhidos em centros.csv
+#Adiciona os centros escolhidos no arquivo centros.csv.
     with open('centros.csv', 'a', newline='') as centros_escolhidos_csv:
         escrever_centro = csv.writer(centros_escolhidos_csv)
         escrever_centro.writerow(k_ponto_escolhido)
 
+#Cria grupos vazios para adicionar os pontos(listas de listas).(quantidade de grupos = k).
 for value in range(k_centroides_aleatorios):
      grupos.append([])
 
-#Onde a magia acontece
+#Bloco principal (calcula os novos centros, plotagem, chama a função calcular distâncias...). 
 ultimo_loop = True
 ftime = False
 step = 0
+#Primeiro ciclo: calcula as distâncias em relação aos centros aleatórios e agrupa os pontos. 
+#Ciclos seguintes: calcula os novos centros e as novas distâncias até que não haja mais alterações no grupos. 
 while ultimo_loop:
+    #Lista onde será adicionado os novos centros. Precisa ser reiniciada a cada loop.
     novos_centros = []
+    #Recebe os pontos agrupos.
     grupos = calcular_distancias()[:]
     cont_1 = len(grupos)
     cont_2 = 0
     cont_3 = cont_1
     element = 0
 
+    #Imprime cada grupos (e quantidade de pontos) gerados.
     cont_7 = 0
     for var in grupos:
         cont_7 += 1 
